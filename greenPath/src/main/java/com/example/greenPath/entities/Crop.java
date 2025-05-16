@@ -1,0 +1,96 @@
+package com.example.greenPath.entities;
+
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "crop")
+public class Crop {
+
+    private Long id;
+    private User user;
+    private String cropName;
+    private String season;
+    private Long amount;
+    private String landSize;
+    private String status;
+    private String area;
+
+    public Crop(){}
+
+    public Crop(Long id, User user, String cropName, String season, Long amount, String landSize, String status, String area) {
+        this.id = id;
+        this.user = user;
+        this.cropName = cropName;
+        this.season = season;
+        this.amount = amount;
+        this.landSize = landSize;
+        this.status = status;
+        this.area = area;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getFarmer() {
+        return user;
+    }
+
+    public void setFarmer(User user) {
+        this.user = user;
+    }
+
+    public String getCropName() {
+        return cropName;
+    }
+
+    public void setCropName(String cropName) {
+        this.cropName = cropName;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
+    }
+
+    public Long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
+
+    public String getLandSize() {
+        return landSize;
+    }
+
+    public void setLandSize(String landSize) {
+        this.landSize = landSize;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+}
