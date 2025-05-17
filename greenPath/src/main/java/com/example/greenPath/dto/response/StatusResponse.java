@@ -1,26 +1,19 @@
-package com.example.greenPath.entities;
+package com.example.greenPath.dto.response;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "statuses")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Status {
+public class StatusResponse {
 
-    @Id
-    @GeneratedValue
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "crop_id")
-    private Crop crop;
     private String message;
     private LocalDate timestamp;
 
 }
+

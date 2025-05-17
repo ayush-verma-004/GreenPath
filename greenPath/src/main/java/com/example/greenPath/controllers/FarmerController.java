@@ -1,7 +1,6 @@
 package com.example.greenPath.controllers;
 
 
-import com.example.greenPath.dto.request.CropDto;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;

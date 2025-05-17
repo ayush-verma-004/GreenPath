@@ -1,96 +1,45 @@
 package com.example.greenPath.entities;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
-@Table(name = "crop")
+@Table(name = "crops")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Crop {
 
+    @Id
+    @GeneratedValue
     private Long id;
-    private User user;
-    private String cropName;
+
+    @ManyToOne(optional = false) @JoinColumn(name = "farmer_id")
+    private User farmer;
+
+    private String name;
     private String season;
-    private Long amount;
-    private String landSize;
+    private String variety;
+    private BigDecimal area;
+    private BigDecimal expectedAmount;
     private String status;
-    private String area;
+    private String primaryImageUrl;
+    private String secondaryImageUrl;
 
-    public Crop(){}
+    @OneToMany(mappedBy = "crop", cascade = CascadeType.ALL)
+    private List<InsurancePlan> insurancePlans;
 
-    public Crop(Long id, User user, String cropName, String season, Long amount, String landSize, String status, String area) {
-        this.id = id;
-        this.user = user;
-        this.cropName = cropName;
-        this.season = season;
-        this.amount = amount;
-        this.landSize = landSize;
-        this.status = status;
-        this.area = area;
-    }
+    @OneToMany(mappedBy = "crop", cascade = CascadeType.ALL)
+    private List<InsuranceRequest> insuranceRequests;
 
-    public Long getId() {
-        return id;
-    }
+    @OneToOne(mappedBy = "crop", cascade = CascadeType.ALL)
+    private Sell sellDetails;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToMany(mappedBy = "crop", cascade = CascadeType.ALL)
+    private List<Status> history;
 
-    public User getFarmer() {
-        return user;
-    }
-
-    public void setFarmer(User user) {
-        this.user = user;
-    }
-
-    public String getCropName() {
-        return cropName;
-    }
-
-    public void setCropName(String cropName) {
-        this.cropName = cropName;
-    }
-
-    public String getSeason() {
-        return season;
-    }
-
-    public void setSeason(String season) {
-        this.season = season;
-    }
-
-    public Long getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }
-
-    public String getLandSize() {
-        return landSize;
-    }
-
-    public void setLandSize(String landSize) {
-        this.landSize = landSize;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
 }

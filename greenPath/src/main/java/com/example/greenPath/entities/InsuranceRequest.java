@@ -8,21 +8,24 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "sells")
+@Table(name = "insurance_requests")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Sell {
+public class InsuranceRequest {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @OneToOne(optional = false) @JoinColumn(name = "crop_id")
+    @ManyToOne(optional = false) @JoinColumn(name = "farmer_id")
+    private User farmer;
+
+    @ManyToOne(optional = false) @JoinColumn(name = "crop_id")
     private Crop crop;
 
-    private BigDecimal quantity;
-    private BigDecimal price;
-    private LocalDate createdOn;
+    private String status;
+    private BigDecimal claimAmount;
+    private LocalDate requestedOn;
 
 }
