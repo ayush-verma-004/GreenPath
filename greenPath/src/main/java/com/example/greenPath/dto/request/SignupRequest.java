@@ -15,6 +15,7 @@ public class SignupRequest {
     private String username;
     private String email;
     private String password;
+    private String location;
     private PersonalDetails personal;
     private LandDetails land;
     private BankDetails bank;

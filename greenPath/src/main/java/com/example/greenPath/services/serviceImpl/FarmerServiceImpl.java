@@ -7,12 +7,14 @@ import com.example.greenPath.entities.*;
 import com.example.greenPath.repositories.*;
 import com.example.greenPath.services.service.FarmerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,6 +22,8 @@ import java.util.stream.Collectors;
 @Transactional
 public class FarmerServiceImpl implements FarmerService {
 
+    @Autowired
+    UserRepository userRepository;
     private final UserRepository userRepo;
     private final CropRepository cropRepo;
     private final InsurancePlanRepository planRepo;
@@ -30,7 +34,8 @@ public class FarmerServiceImpl implements FarmerService {
     @Override
     public CropResponse registerCrop(CropRegistrationRequest req) {
         // lookup authenticated user (omitted)
-        User farmer = /* fetch from security context */ null;
+        User farmer = userRepository.findById(1L)
+                .orElseThrow(() -> new RuntimeException("Farmer not found with ID 1"));
         Crop c = new Crop();
         c.setFarmer(farmer);
         c.setName(req.getName());
