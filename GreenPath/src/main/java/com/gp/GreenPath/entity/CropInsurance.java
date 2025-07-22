@@ -41,7 +41,12 @@ public class CropInsurance {
     private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = )
+    @JoinColumn(name = "farmer_id", nullable = false)
+    private Farmer farmer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "crop_id", nullable = false)
+    private Crop crop;
 
     public enum InsuranceStatus{
         PENDING,
